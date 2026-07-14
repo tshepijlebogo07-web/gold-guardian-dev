@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gold Guardian</title>
+
+<link rel="stylesheet" href="variables.css">
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="dashboard.css">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#0d1117">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h1>🛡 Gold Guardian</h1>
+
+<p>Discipline Before Profit.</p>
+
+<div class="live-clock">
+
+<span>Current Time</span>
+
+<strong id="liveTime">--:--:--</strong>
+
+</div>
+
+</header>
+
+<main class="dashboard">
+
+<!-- Gold Price -->
+
+<section class="card">
+
+<h2>Current Gold Price</h2>
+
+<p id="goldPrice">Loading...</p>
+
+</section>
+
+<!-- =========================================
+TradingView Professional Chart
+========================================= -->
+
+<section class="card chart-card">
+
+<h2>Live Gold Chart</h2>
+
+<div id="tradingviewChart">
+
+</div>
+
+</section>
+
+<!-- =========================================
+Asia Range Visual
+========================================= -->
+
+<section class="card">
+
+<h2>Asia Session Range</h2>
+
+<div class="asia-range">
+
+<div class="asia-level high">
+
+<span>Asia High</span>
+
+<strong id="asiaHighVisual">--</strong>
+
+</div>
+
+<div class="asia-zone">
+
+<div id="asiaRangeFill"></div>
+
+</div>
+
+<div class="asia-stats">
+
+<div>
+
+<div class="asia-signal">
+
+Current Zone:
+
+<strong id="asiaSignal">
+
+Monitoring...
+
+</strong>
+
+</div>
+
+<span>Range</span>
+
+<strong id="asiaRangeSize">--</strong>
+
+</div>
+
+<div>
+
+<span>Distance to High</span>
+
+<strong id="distanceHigh">--</strong>
+
+</div>
+
+<div>
+
+<span>Distance to Low</span>
+
+<strong id="distanceLow">--</strong>
+
+</div>
+
+</div>
+
+<div class="asia-level low">
+
+<span>Asia Low</span>
+
+<strong id="asiaLowVisual">--</strong>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================
+Liquidity Sweep Visualizer
+========================================= -->
+
+<section class="card">
+
+<h2>Liquidity Sweep</h2>
+
+<div class="liquidity-panel">
+
+<div id="buyLiquidityCard" class="liquidity-card">
+
+<h3>🟢 Buy-side</h3>
+
+<p id="buyLiquidityStatus">
+
+Waiting...
+
+</p>
+
+<small id="buyLiquidityTime">
+
+No sweep detected
+
+</small>
+
+</div>
+
+<div id="sellLiquidityCard" class="liquidity-card">
+
+<h3>🔴 Sell-side</h3>
+
+<p id="sellLiquidityStatus">
+
+Waiting...
+
+</p>
+
+<small id="sellLiquidityTime">
+
+No sweep detected
+
+</small>
+
+</div>
+
+</div>
+
+<div class="liquidity-summary">
+
+<strong>Guardian View</strong>
+
+<p id="liquiditySummary">
+
+Waiting for liquidity sweep...
+
+</p>
+
+</div>
+
+</section>
+
+<!-- Guardian Verdict -->
+
+<section class="card hero-card">
+
+<h2>Guardian Verdict</h2>
+
+<p id="guardianVerdict">
+
+NO TRADE
+
+</p>
+
+<small>
+
+Discipline Before Profit.
+
+</small>
+
+</section>
+
+<!-- Confidence -->
+
+<section class="card">
+
+<h2>Confidence</h2>
+
+<p id="confidence">0%</p>
+
+</section>
+
+<!-- Asia High -->
+
+<section class="card">
+
+<h2>Asia High</h2>
+
+<p id="asiaHigh">--</p>
+
+</section>
+
+<!-- Asia Low -->
+
+<section class="card">
+
+<h2>Asia Low</h2>
+
+<p id="asiaLow">--</p>
+
+</section>
+
+<!-- Current Session -->
+
+<section class="card">
+
+<h2>Current Session</h2>
+
+<p id="currentSession">Detecting...</p>
+
+</section>
+
+<section class="card">
+
+<h2>News Status</h2>
+
+<p id="newsStatus">
+
+🟢 Clear
+
+</p>
+
+</section>
+
+<!-- London Countdown -->
+
+<section class="card">
+
+<h2>London Countdown</h2>
+
+<p id="londonCountdown">--:--:--</p>
+
+</section>
+
+<!-- New York Countdown -->
+
+<section class="card">
+
+<h2>New York Countdown</h2>
+
+<p id="newYorkCountdown">--:--:--</p>
+
+</section>
+
+<!-- Liquidity -->
+
+<section class="card">
+
+<h2>Liquidity Status</h2>
+
+<p id="liquidityStatus">
+
+Watching
+
+</p>
+
+</section>
+
+<!-- Market Bias -->
+
+<section class="card">
+
+<h2>Market Bias</h2>
+
+<p id="marketBias">
+
+Neutral
+
+</p>
+
+</section>
+
+<section class="card">
+
+<h2>Premium / Discount</h2>
+
+<p id="premiumDiscount">
+
+Equilibrium
+
+</p>
+
+</section>
+
+<!-- Fair Value Gap -->
+
+<section class="card">
+
+<h2>Fair Value Gap</h2>
+
+<p id="fvgStatus">
+
+None
+
+</p>
+
+</section>
+
+<!-- Order Block -->
+
+<section class="card">
+
+<h2>Order Block</h2>
+
+<p id="orderBlockStatus">
+
+None
+
+</p>
+
+</section>
+
+<!-- Confirmation Progress -->
+
+<section class="card">
+
+<h2>Confirmation Progress</h2>
+
+<p id="confirmationProgress">
+
+0 / 8
+
+</p>
+
+</section>
+
+<!-- Guardian Checklist -->
+
+<section class="card">
+
+<h2>Guardian Checklist</h2>
+
+<ul id="guardianChecklist">
+
+<li>⏳ Asia Liquidity</li>
+
+<li>⏳ Rejection</li>
+
+<li>⏳ Structure Shift</li>
+
+<li>⏳ Displacement</li>
+
+<li>⏳ Risk : Reward</li>
+
+</ul>
+
+</section>
+
+<!-- Entry -->
+
+<section class="card">
+
+<h2>Entry</h2>
+
+<p id="entryPrice">--</p>
+
+</section>
+
+<!-- Stop Loss -->
+
+<section class="card">
+
+<h2>Stop Loss</h2>
+
+<p id="stopLoss">--</p>
+
+</section>
+
+<!-- Take Profit 1 -->
+
+<section class="card">
+
+<h2>Take Profit 1</h2>
+
+<p id="takeProfit1">--</p>
+
+</section>
+
+<!-- Take Profit 2 -->
+
+<section class="card">
+
+<h2>Take Profit 2</h2>
+
+<p id="takeProfit2">--</p>
+
+</section>
+
+<!-- Risk Reward -->
+
+<section class="card">
+
+<h2>Risk : Reward</h2>
+
+<p id="riskReward">--</p>
+
+</section>
+
+<section class="card">
+
+<h2>System Status</h2>
+
+<p>API:
+<strong id="apiStatus">Checking...</strong></p>
+
+<p>Guardian:
+<strong id="guardianStatus">Checking...</strong></p>
+
+<p>Journal:
+<strong id="journalStatus">Checking...</strong></p>
+
+<p>Dashboard:
+<strong id="dashboardStatus">Checking...</strong></p>
+
+</section>
+
+<!-- Debug Console -->
+
+<section class="card">
+
+<h2>Debug Console</h2>
+
+<div id="debugConsole">
+
+<p>System starting...</p>
+
+</div>
+
+</section>
+
+<!-- Performance Dashboard -->
+
+<section class="card">
+
+<h2>Performance</h2>
+
+<p>Total Signals:
+<strong id="totalSignals">0</strong></p>
+
+<p>BUY Signals:
+<strong id="buySignals">0</strong></p>
+
+<p>SELL Signals:
+<strong id="sellSignals">0</strong></p>
+
+<p>Average Confidence:
+<strong id="averageConfidence">0%</strong></p>
+
+<p>Average RR:
+<strong id="averageRR">0</strong></p>
+
+</section>
+
+<!-- Trade Journal -->
+
+<section class="card">
+
+<h2>Trade Journal</h2>
+
+<div id="journalContainer">
+
+<p>No trades recorded yet.</p>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script src="config.js"></script>
+<script src="guardian.js"></script>
+<script src="market.js"></script>
+<script src="strategy.js"></script>
+<script src="structure.js"></script>
+<script src="displacement.js"></script>
+<script src="fvg.js"></script>
+<script src="orderblock.js"></script>
+<script src="premiumdiscount.js"></script>
+<script src="confirmation.js"></script>
+<script src="tradeplan.js"></script>
+<script src="journal.js"></script>
+<script src="validator.js"></script>
+<script src="news.js"></script>
+<script src="notifications.js"></script>
+<script src="debug.js"></script>
+<script src="app.js"></script>
+<script>
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register(
+
+"service-worker.js"
+
+);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+/* ========== GLOBAL RESET ========== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== BODY ========== */
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-primary);
+    color: var(--text);
+
+    min-height: 100vh;
+
+    padding: 24px;
+}
+
+/* ========== HEADER ========== */
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.header h1 {
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* ========== DASHBOARD GRID ========== */
+
+.dashboard {
+    display: grid;
+
+    gap: 20px;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ==========================================
+TradingView Chart
+========================================== */
+
+.chart-card{
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+#tradingviewChart{
+
+    width:100%;
+
+    height:600px;
+
+    min-height:500px;
+    
+}
+
+/* ==========================================
+GG-036 Asia Session Range
+========================================== */
+
+.asia-range{
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+.asia-level{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.asia-level strong{
+
+color:var(--gold);
+
+font-size:1.1rem;
+
+}
+
+.asia-zone{
+
+height:14px;
+
+border-radius:999px;
+
+background:#1f1f1f;
+
+overflow:hidden;
+
+}
+
+#asiaRangeFill{
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+#c49b00,
+#ffd700
+);
+
+}
+
+/* ==========================================
+GG-036 Asia Statistics
+========================================== */
+
+.asia-stats{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:16px;
+
+margin-top:18px;
+
+text-align:center;
+
+}
+
+.asia-stats span{
+
+display:block;
+
+font-size:.8rem;
+
+color:var(--text-muted);
+
+margin-bottom:6px;
+
+}
+
+.asia-stats strong{
+
+font-size:1rem;
+
+color:var(--gold);
+
+}
+
+/* ==========================================
+GG-036 Asia Signal
+========================================== */
+
+.asia-signal{
+
+margin-top:20px;
+
+padding:14px;
+
+border-radius:10px;
+
+text-align:center;
+
+font-weight:bold;
+
+background:#1d1d1d;
+
+}
+
+#asiaSignal{
+
+display:block;
+
+margin-top:8px;
+
+font-size:1.1rem;
+
+color:var(--gold);
+
+}
+
+/* ==========================================
+GG-036 Liquidity Sweep
+========================================== */
+
+.liquidity-panel{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+margin-top:12px;
+
+}
+
+.liquidity-card{
+
+padding:16px;
+
+border-radius:12px;
+
+background:#1d1d1d;
+
+text-align:center;
+
+border:1px solid #2a2a2a;
+
+transition:.3s;
+
+}
+
+.liquidity-card h3{
+
+margin-bottom:10px;
+
+}
+
+.liquidity-card p{
+
+font-weight:bold;
+
+}
+
+.liquidity-active{
+
+border:2px solid var(--gold);
+
+transform:scale(1.02);
+
+}
+
+.liquidity-card small{
+
+display:block;
+
+margin-top:10px;
+
+font-size:.8rem;
+
+color:var(--text-muted);
+
+}
+
+/* ==========================================
+GG-036 Liquidity Summary
+========================================== */
+
+.liquidity-summary{
+
+margin-top:20px;
+
+padding:16px;
+
+border-radius:12px;
+
+background:#181818;
+
+border-left:4px solid var(--gold);
+
+}
+
+.liquidity-summary strong{
+
+display:block;
+
+margin-bottom:8px;
+
+color:var(--gold);
+
+}
+
+.liquidity-summary p{
+
+line-height:1.5;
+
+color:var(--text);
+
+}
