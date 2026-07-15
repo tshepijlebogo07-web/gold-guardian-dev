@@ -1,8 +1,8 @@
 // ==========================================
 // GOLD GUARDIAN
 // Dynamic Trade Plan Engine
-// Version 1.3.0
-// GG-038 Package 3
+// Version 1.3.1
+// GG-038 Package 4
 // ==========================================
 
 function generateTradePlan(price, candles){
@@ -138,6 +138,16 @@ function generateTradePlan(price, candles){
 
     document.getElementById("riskReward").textContent =
     guardian.riskReward;
+
+    // --------------------------
+    // Save Signal To Journal
+    // --------------------------
+
+    if(typeof recordSignal === "function"){
+
+        recordSignal();
+
+    }
 
     updateGuardianDashboard();
 
