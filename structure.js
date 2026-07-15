@@ -6,13 +6,13 @@
 
 function detectStructureShift(candles){
 
-if(!guardian.memory.active){
+    if(!guardian.memory.active){
 
-    guardian.scores.structure = false;
+        guardian.scores.structure = false;
 
-    return;
+        return;
 
-}
+    }
 
     if(!candles || candles.length < 2){
 
@@ -21,7 +21,6 @@ if(!guardian.memory.active){
     }
 
     const latest = candles[0];
-
     const previous = candles[1];
 
     const latestOpen = Number(latest.open);
@@ -58,19 +57,19 @@ if(!guardian.memory.active){
     ){
 
         guardian.scores.structure = true;
-        
+
         guardian.memory.structureConfirmed = true;
 
-guardian.memory.confirmations++;
+        guardian.memory.confirmations++;
 
-updateConfidence();
+        updateConfidence();
 
         guardian.verdict = GuardianState.BUY_READY;
 
-// Wait for Trade Plan Engine
-// before saving signal
+        // Wait for Trade Plan Engine
+        // before saving signal
 
-updateGuardianDashboard();
+        updateGuardianDashboard();
 
     }
 
@@ -92,13 +91,19 @@ updateGuardianDashboard();
 
         guardian.scores.structure = true;
 
-updateConfidence();
+        guardian.memory.structureConfirmed = true;
+
+        guardian.memory.confirmations++;
+
+        updateConfidence();
 
         guardian.verdict = GuardianState.SELL_READY;
 
-// Wait for Trade Plan Engine
-// before saving signal
+        // Wait for Trade Plan Engine
+        // before saving signal
 
-updateGuardianDashboard();
+        updateGuardianDashboard();
 
     }
+
+}
