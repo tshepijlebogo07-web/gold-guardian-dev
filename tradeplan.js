@@ -1,8 +1,8 @@
 // ==========================================
 // GOLD GUARDIAN
 // Dynamic Trade Plan Engine
-// Version 1.2.0
-// GG-034.5 Recovery
+// Version 1.3.0
+// GG-038 Package 3
 // ==========================================
 
 function generateTradePlan(price, candles){
@@ -93,6 +93,20 @@ function generateTradePlan(price, candles){
 
     const rr = reward / risk;
 
+    // --------------------------
+    // Save Current Trade Plan
+    // --------------------------
+
+    guardian.entry = entry.toFixed(2);
+
+    guardian.stopLoss = stopLoss.toFixed(2);
+
+    guardian.takeProfit1 = takeProfit1.toFixed(2);
+
+    guardian.takeProfit2 = takeProfit2.toFixed(2);
+
+    guardian.riskReward = "1 : " + rr.toFixed(1);
+
     guardian.scores.riskReward =
     rr >= CONFIG.minRiskReward;
 
@@ -111,43 +125,19 @@ function generateTradePlan(price, candles){
     }
 
     document.getElementById("entryPrice").textContent =
-    entry.toFixed(2);
+    guardian.entry;
 
     document.getElementById("stopLoss").textContent =
-    stopLoss.toFixed(2);
+    guardian.stopLoss;
 
     document.getElementById("takeProfit1").textContent =
-    takeProfit1.toFixed(2);
+    guardian.takeProfit1;
 
     document.getElementById("takeProfit2").textContent =
-    takeProfit2.toFixed(2);
+    guardian.takeProfit2;
 
     document.getElementById("riskReward").textContent =
-    "1 : " + rr.toFixed(1);
-
-    if(typeof addTrade === "function"){
-
-        addTrade({
-
-            date: new Date().toLocaleString(),
-
-            type: guardian.verdict,
-
-            entry: entry.toFixed(2),
-
-            stopLoss: stopLoss.toFixed(2),
-
-            tp1: takeProfit1.toFixed(2),
-
-            tp2: takeProfit2.toFixed(2),
-
-            rr: "1 : " + rr.toFixed(1),
-
-            confidence: guardian.confidence + "%"
-
-        });
-
-    }
+    guardian.riskReward;
 
     updateGuardianDashboard();
 
@@ -158,6 +148,16 @@ function generateTradePlan(price, candles){
 // ==========================================
 
 function clearTradePlan(){
+
+    guardian.entry = null;
+
+    guardian.stopLoss = null;
+
+    guardian.takeProfit1 = null;
+
+    guardian.takeProfit2 = null;
+
+    guardian.riskReward = null;
 
     document.getElementById("entryPrice").textContent = "--";
 

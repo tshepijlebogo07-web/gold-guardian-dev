@@ -67,6 +67,11 @@ updateConfidence();
 
         guardian.verdict = GuardianState.BUY_READY;
 
+// Wait for Trade Plan Engine
+// before saving signal
+
+updateGuardianDashboard();
+
     }
 
     // --------------------------
@@ -91,8 +96,9 @@ updateConfidence();
 
         guardian.verdict = GuardianState.SELL_READY;
 
+// Wait for Trade Plan Engine
+// before saving signal
+
+updateGuardianDashboard();
+
     }
-
-    updateGuardianDashboard();
-
-}

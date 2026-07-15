@@ -56,31 +56,67 @@ let guardian = {
 
     confidence: 0,
     
+    // Current Trade Plan
+
+entry:null,
+
+stopLoss:null,
+
+takeProfit1:null,
+
+takeProfit2:null,
+
+riskReward:null,
+
     // Persistent Market Memory
 
-memory:{
+    memory:{
 
-    active:false,
+        active:false,
 
-    liquiditySide:null,
+        liquiditySide:null,
 
-    sweepPrice:0,
+        sweepPrice:0,
 
-    sweepTime:null,
+        sweepTime:null,
 
-    session:null,
+        session:null,
 
-    confirmations:0,
+        confirmations:0,
 
-    tradeIssued:false,
+        tradeIssued:false,
 
-    fvgConfirmed:false,
+        fvgConfirmed:false,
 
-    orderBlockConfirmed:false,
+        orderBlockConfirmed:false,
 
-    structureConfirmed:false
+        structureConfirmed:false
 
-},
+    },
+
+    // Trade Journal
+
+    journal:[],
+
+    // Performance Statistics
+
+    performance:{
+
+        total:0,
+
+        buy:0,
+
+        sell:0,
+
+        wins:0,
+
+        losses:0,
+
+        averageConfidence:0,
+
+        averageRR:0
+
+    },
 
     // Fair Value Gap
 
@@ -145,6 +181,74 @@ memory:{
     }
 
 };
+
+// --------------------------
+// Save Trade
+// GG-038
+// --------------------------
+
+function recordSignal(){
+
+    if(
+
+    guardian.memory.tradeIssued ||
+
+    !guardian.entry ||
+
+    !guardian.stopLoss ||
+
+    !guardian.takeProfit1
+
+){
+
+    return;
+
+}
+
+guardian.memory.tradeIssued = true;
+
+    const trade = {
+
+        type: guardian.verdict,
+
+        date: new Date().toLocaleString(),
+
+        entry: guardian.entry ?? "--",
+
+        stopLoss: guardian.stopLoss ?? "--",
+
+        tp1: guardian.takeProfit1 ?? "--",
+
+        rr: guardian.riskReward ?? "--",
+
+        confidence: guardian.confidence
+
+    };
+
+    guardian.journal.unshift(trade);
+
+    guardian.performance.total++;
+
+    if(trade.type === GuardianState.BUY_READY){
+
+        guardian.performance.buy++;
+
+    }
+
+    if(trade.type === GuardianState.SELL_READY){
+
+        guardian.performance.sell++;
+
+    }
+
+    // Save into the Journal Engine
+    if(typeof addTrade === "function"){
+
+        addTrade(trade);
+
+    }
+
+}
 
 // ---------------------------
 // Confidence Engine
